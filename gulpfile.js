@@ -14,16 +14,12 @@ Gulp.task('clean', cb => {
   return Del([buildDir], cb);
 });
 
-Gulp.task('export', () => {
-  return Gulp.src([`${sourceDir}/**/*.js`, `!${sourceDir}/index.js`])
-    .pipe(Export({context: './src'}));
-});
-
-Gulp.task('js-compile', ['clean', 'export'], function() {
+Gulp.task('js-compile', ['clean'], function() {
   return Gulp.src([`${sourceDir}/**/*.js`])
     .pipe(ESLlint())
     .pipe(ESLlint.format())
     .pipe(ESLlint.failAfterError())
+    .pipe(Export({context: './src'}))
     .pipe(Sourcemaps.init())
     .pipe(Babel())
     .pipe(Sourcemaps.write('.'))
@@ -35,4 +31,4 @@ Gulp.task('files-copy', ['clean'], function() {
     .pipe(Gulp.dest(buildDir));
 });
 
-Gulp.task('default', ['clean', 'export', 'js-compile', 'files-copy']);
+Gulp.task('default', ['clean', 'js-compile', 'files-copy']);
