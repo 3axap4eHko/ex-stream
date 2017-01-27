@@ -1,25 +1,27 @@
 'use strict';
 
 import Url from 'url';
-import {Readable} from 'stream';
-import {concat} from './Concat';
+import {Transform} from 'stream';
+import Stringify from './Stringify';
 
 const _request = Symbol('Request');
 
 
-class Request extends Readable {
+class Request extends Transform {
   static request(request) {
     return new Request(request);
   }
+
   constructor(request) {
     super({objectMode: true});
     this[_request] = request;
 
     request
-      .pipe(concat)
+      .pipe(Stringify.stringify())
       .pipe(this);
 
   }
+
   _transform(data, enc, next) {
     const request = {
       url: Url.parse(`http://localhost${this[_request].url}`),

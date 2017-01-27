@@ -45,12 +45,12 @@ class TestGroupStringStream extends Accumulator {
 
 describe('Accumulator Test Suite', () => {
 
-  it('Should accumulate values and emit them in event', (done) => {
+  it('Should accumulate values and emit them in event for join', (done) => {
 
     const testString = 'abcdefg';
     const accumulator = new TestConcatStringStream();
     accumulator.on('data', data => {
-      expect(data).toEqual(Buffer.from(testString));
+      data.should.be.bufferOf(testString);
       done();
     });
     accumulator.write('a');
@@ -62,17 +62,17 @@ describe('Accumulator Test Suite', () => {
     accumulator.end('g');
   });
 
-  it('Should accumulate values and emit them in event', (done) => {
+  it('Should accumulate values and emit them in event for group', (done) => {
 
     const testString = 'abcdefg';
     const accumulator = new TestGroupStringStream();
     let counter = 0;
     accumulator.on('data', data => {
-      expect(data).toEqual(Buffer.from(testString.slice(counter*2,counter*2 + 2)));
+      data.should.be.bufferOf(testString.slice(counter*2,counter*2 + 2));
       counter++;
     });
     accumulator.on('end', () => {
-      expect(counter).toEqual(4);
+      counter.should.be.exactly(4);
       done();
     });
     accumulator.write('a');
@@ -91,7 +91,7 @@ describe('Accumulator Test Suite', () => {
     const stream = new PassThrough();
     accumulator.pipe(stream);
     stream.on('data', data => {
-      expect(data).toEqual(Buffer.from(testString));
+      data.should.be.bufferOf(testString);
       done();
     });
     accumulator.write('a');
@@ -108,7 +108,7 @@ describe('Accumulator Test Suite', () => {
     const testString = 'abcdefg';
     const accumulator = new TestConcatStringStream();
     accumulator.on('readable', () => {
-      expect(accumulator.read()).toEqual(Buffer.from(testString));
+      accumulator.read().should.be.bufferOf(testString);
       done();
     });
     accumulator.write('a');

@@ -2,21 +2,21 @@
 
 import {Transform, PassThrough} from 'stream';
 
-const _producer = Symbol('Composer producer');
+const _representative = Symbol('Composer representative');
 
 class Composer extends Transform {
   constructor({streams, ...options}) {
     super(options);
-    this[_producer] = new PassThrough(options);
+    this[_representative] = new PassThrough(options);
     streams
       .reduce( (source, Target) => source.pipe(new Target()), this)
-      .pipe(this[_producer]);
+      .pipe(this[_representative]);
   }
   pipe(stream) {
-    return this[_producer].pipe(stream);
+    return this[_representative].pipe(stream);
   }
   unpipe(stream) {
-    return this[_producer].unpipe(stream);
+    return this[_representative].unpipe(stream);
   }
 }
 
