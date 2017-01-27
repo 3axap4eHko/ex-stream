@@ -1,0 +1,19 @@
+{
+  "presets": [
+    "latest",
+    ["env",{
+      "targets": {
+        "node": true
+      }
+    }]
+  ],
+  "plugins": [
+    "transform-object-rest-spread",
+    "transform-class-properties"
+  ],
+  "env": {
+    "production": {
+      "presets": ["babili"]
+    }
+  }
+}

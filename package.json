@@ -1,0 +1,39 @@
+{
+  "name": "ex-stream",
+  "version": "1.0.0",
+  "description": "Tiny library of useful streams",
+  "main": "index.js",
+  "scripts": {
+    "build": "cross-env NODE_ENV=production gulp",
+    "test": "cross-env NODE_ENV=development jasmine"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/3axap4eHko/ex-stream.git"
+  },
+  "keywords": [],
+  "author": "Ivan Zakharchenko",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/3axap4eHko/ex-stream/issues"
+  },
+  "homepage": "https://github.com/3axap4eHko/ex-stream#readme",
+  "devDependencies": {
+    "babel-core": "^6.22.1",
+    "babel-eslint": "^7.1.1",
+    "babel-plugin-transform-class-properties": "^6.22.0",
+    "babel-plugin-transform-object-rest-spread": "^6.22.0",
+    "babel-preset-babili": "^0.0.10",
+    "babel-preset-env": "^1.1.8",
+    "babel-preset-latest": "^6.22.0",
+    "cross-env": "^3.1.4",
+    "del": "^2.2.2",
+    "eslint": "^3.14.1",
+    "gulp": "^3.9.1",
+    "gulp-babel": "^6.1.2",
+    "gulp-eslint": "^3.0.1",
+    "gulp-export": "^0.1.3",
+    "gulp-sourcemaps": "^2.4.0",
+    "jasmine": "^2.5.3"
+  }
+}
