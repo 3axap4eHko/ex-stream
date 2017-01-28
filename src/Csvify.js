@@ -2,7 +2,6 @@
 
 import {Transform} from 'stream';
 import Accumulator from './Accumulator';
-import FilterRegexp from './FilterRegexp';
 import Splitter from './Splitter';
 
 

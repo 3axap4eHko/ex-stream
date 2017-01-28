@@ -12,9 +12,6 @@ class Dispatcher extends Transform {
   constructor(actions) {
     super({objectMode: true});
     this[_actions] = actions;
-    if (typeof this._dispatch !== 'function') {
-      throw new Error('Method _dispatch is not defined');
-    }
   }
 
   _transform({name, args}, enc, next) {
