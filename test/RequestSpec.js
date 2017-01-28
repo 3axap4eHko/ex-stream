@@ -14,8 +14,8 @@ describe('Request Test Suite', () => {
     rawRequest.url = url;
     const stream = Request.request(rawRequest);
     stream.on('data', request => {
-      expect(request.url.path).toEqual(url);
-      expect(request.data.toString()).toEqual(content);
+      request.url.path.should.be.equal(url);
+      request.data.should.be.bufferOf(content);
       done();
     });
 

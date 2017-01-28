@@ -2,6 +2,8 @@
 
 Tiny library of useful streams
 
+[![build status](https://travis-ci.org/3axap4eHko/ex-stream.svg?branch=master)](https://travis-ci.org/3axap4eHko/ex-stream)
+
 ## Reference
 
  - Accumulator - accumulative stream
