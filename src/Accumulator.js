@@ -16,6 +16,7 @@ class Accumulator extends Transform {
       throw new Error('Method _release is not defined');
     }
   }
+
   end(chunk, encoding, next) {
     if (chunk !== null && typeof chunk !== 'undefined') {
       this._charge(chunk, encoding, (error, data) => {

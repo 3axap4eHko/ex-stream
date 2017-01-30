@@ -8,6 +8,7 @@ class Filter extends Transform {
   static filter(options) {
     return new Filter(options);
   }
+
   constructor({filter, ...options}) {
     super(options);
     if (typeof filter !== 'function') {
@@ -15,6 +16,7 @@ class Filter extends Transform {
     }
     this[_filter] = filter;
   }
+
   _transform(data, enc, next) {
     if (this[_filter](data, enc)) {
       next(null, data);

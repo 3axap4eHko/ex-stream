@@ -14,7 +14,7 @@ class Splitter extends Accumulator {
   constructor({splitter = '\n', includingMode, ...options} = {}) {
     super(options);
     this[_splitter] = splitter;
-    this[_shift] = includingMode|0;
+    this[_shift] = includingMode | 0;
     this[_data] = '';
   }
 

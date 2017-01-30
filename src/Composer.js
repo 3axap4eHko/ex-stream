@@ -9,12 +9,14 @@ class Composer extends Transform {
     super(options);
     this[_representative] = new PassThrough(options);
     streams
-      .reduce( (source, Target) => source.pipe(new Target()), this)
+      .reduce((source, Target) => source.pipe(new Target()), this)
       .pipe(this[_representative]);
   }
+
   pipe(stream) {
     return this[_representative].pipe(stream);
   }
+
   unpipe(stream) {
     return this[_representative].unpipe(stream);
   }
