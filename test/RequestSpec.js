@@ -13,13 +13,13 @@ function testRequest({data, ...options}) {
 
 describe('Request Test Suite', () => {
 
-  it('Should handle the request and return request object with buffer data', done => {
+  it('Should handle the request and return request object with buffer data on data event', done => {
     const url = '/path/name?with=query';
     const data = JSON.stringify({test: 1});
 
     testRequest({
       path: url,
-      port: 8189,
+      port: 8181,
       method: 'POST',
       data,
       headers: {
@@ -39,6 +39,33 @@ describe('Request Test Suite', () => {
       });
   });
 
+  it('Should handle the request and return request object with buffer data by piping', done => {
+    const url = '/path/name?with=query';
+    const data = JSON.stringify({test: 1});
+
+    testRequest({
+      path: url,
+      port: 8182,
+      method: 'POST',
+      data,
+      headers: {
+        'Content-Type': 'application/json',
+        'Content-Length': Buffer.byteLength(data)
+      }
+    })
+      .then(({req, res}) => {
+        Request
+          .request(req)
+          .pipe(new PassThrough({objectMode: true}))
+          .on('data', request => {
+            request.uri.path.should.be.equal(url);
+            request.data.should.be.bufferOf(data);
+            res.end('');
+            done();
+          });
+      });
+  });
+
   it('Should handle the request with data parser and return request object with parsed data', done => {
     const url = '/path/name?with=query';
     const data = JSON.stringify({test: 1});
@@ -46,7 +73,7 @@ describe('Request Test Suite', () => {
 
     testRequest({
       path: url,
-      port: 8187,
+      port: 8183,
       method: 'POST',
       data,
       headers: {
