@@ -6,29 +6,30 @@ import Stringify from './Stringify';
 
 const _request = Symbol('Request');
 
-
 class Request extends Transform {
-  static request(request) {
-    return new Request(request);
+  static request(request, dataTransform) {
+    return new Request(request, dataTransform);
   }
 
-  constructor(request) {
+  constructor(request, dataParser) {
     super({objectMode: true});
     this[_request] = request;
 
+    dataParser = dataParser || (data => data);
+
     request
       .pipe(Stringify.stringify())
-      .pipe(this);
-
+      .on('data', data => this.end(dataParser(data.toString())));
   }
 
   _transform(data, enc, next) {
-    const request = {
-      url: Url.parse(`http://localhost${this[_request].url}`),
-      request: this[_request],
-      data
-    };
-    next(null, request);
+    const uri = Url.parse(`http://${this[_request].headers.host}${this[_request].url}`);
+    Object.assign(this[_request], {
+      data,
+      uri
+    });
+
+    next(null, this[_request]);
   }
 }
 
