@@ -2,9 +2,9 @@
 
 import Url from 'url';
 import {Transform} from 'stream';
-import Stringify from './Stringify';
 
 const _request = Symbol('Request');
+const _content = Symbol('Content');
 
 class Request extends Transform {
   static request(request, dataTransform) {
@@ -14,12 +14,13 @@ class Request extends Transform {
   constructor(request, dataParser) {
     super({objectMode: true});
     this[_request] = request;
+    this[_content] = Buffer.from('');
 
     dataParser = dataParser || (data => data);
 
     request
-      .pipe(Stringify.stringify())
-      .on('data', data => this.end(dataParser(data.toString())));
+      .on('data', data => this[_content] = Buffer.concat([this[_content], data]) )
+      .on('end', () => this.end(dataParser(this[_content].toString())) );
   }
 
   _transform(data, enc, next) {

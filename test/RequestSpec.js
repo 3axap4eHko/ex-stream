@@ -13,6 +13,24 @@ function testRequest({data, ...options}) {
 
 describe('Request Test Suite', () => {
 
+  it('Should handle the request on empty content', done => {
+    const url = '/path/name?with=query';
+    testRequest({
+      path: url,
+      port: 8180,
+      method: 'GET'
+    })
+      .then(({req, res}) => {
+        Request
+          .request(req)
+          .on('data', request => {
+            request.uri.path.should.be.equal(url);
+            res.end('');
+            done();
+          });
+      });
+  });
+
   it('Should handle the request and return request object with buffer data on data event', done => {
     const url = '/path/name?with=query';
     const data = JSON.stringify({test: 1});

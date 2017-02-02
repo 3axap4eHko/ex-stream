@@ -1,6 +1,6 @@
 {
   "name": "ex-stream",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "description": "Tiny library of useful streams",
   "main": "index.js",
   "scripts": {

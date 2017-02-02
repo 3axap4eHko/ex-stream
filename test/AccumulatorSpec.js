@@ -1,6 +1,6 @@
 'use strict';
 
-import {PassThrough} from 'stream';
+import { PassThrough } from 'stream';
 import Accumulator from '../src/Accumulator';
 
 const _data = Symbol('data');
@@ -26,7 +26,7 @@ class TestGroupStringStream extends Accumulator {
   [_data] = '';
 
   constructor(options) {
-    super(options);
+    super({ ...options, objectMode: true });
   }
 
   _charge(data, enc, next) {
@@ -68,7 +68,7 @@ describe('Accumulator Test Suite', () => {
     const accumulator = new TestGroupStringStream();
     let counter = 0;
     accumulator.on('data', data => {
-      data.should.be.bufferOf(testString.slice(counter*2,counter*2 + 2));
+      data.should.be.bufferOf(testString.slice(counter * 2, counter * 2 + 2));
       counter++;
     });
     accumulator.on('end', () => {
