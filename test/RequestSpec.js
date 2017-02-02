@@ -66,7 +66,7 @@ describe('Request Test Suite', () => {
       });
   });
 
-  it('Should handle the request with data parser and return request object with parsed data', done => {
+  it('Should handle the request with data parser and return request object with parsed data on data event', done => {
     const url = '/path/name?with=query';
     const data = JSON.stringify({test: 1});
     const dataParser = rawData => JSON.parse(rawData);
@@ -93,4 +93,31 @@ describe('Request Test Suite', () => {
       });
   });
 
+  it('Should handle the request with data parser and return request object with parsed data on pipe', done => {
+    const url = '/path/name?with=query';
+    const data = JSON.stringify({test: 1});
+    const dataParser = rawData => JSON.parse(rawData);
+
+    testRequest({
+      path: url,
+      port: 8184,
+      method: 'POST',
+      data,
+      headers: {
+        'Content-Type': 'application/json',
+        'Content-Length': Buffer.byteLength(data)
+      }
+    })
+      .then(({req, res}) => {
+        Request
+          .request(req, dataParser)
+          .pipe(new PassThrough({objectMode: true}))
+          .on('data', request => {
+            request.uri.path.should.be.equal(url);
+            JSON.stringify(request.data).should.be.equal(data);
+            res.end('');
+            done();
+          });
+      });
+  });
 });
