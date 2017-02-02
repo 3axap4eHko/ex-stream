@@ -2,20 +2,25 @@
 
 import {Transform} from 'stream';
 
-const _actions = Symbol('Actions map');
+const _matcher = Symbol('Matcher');
+const _executor = Symbol('Executor');
 
 class Dispatcher extends Transform {
-  static dispatch(actions) {
-    return new Dispatcher(actions);
+  static dispatch(matcher, executor) {
+    return new Dispatcher(matcher, executor);
   }
 
-  constructor(actions) {
+  constructor(matcher, executor) {
     super({objectMode: true});
-    this[_actions] = actions;
+    this[_matcher] = matcher;
+    this[_executor] = executor;
   }
 
-  _transform({name, args}, enc, next) {
-    this[_actions][name](...args, next);
+  _transform(inpuData, enc, next) {
+    const matched = this[_matcher](inpuData);
+    new Promise(resolve => resolve(this[_executor](matched)))
+      .then(result => next(null, result))
+      .catch(error => next(error));
   }
 }
 
