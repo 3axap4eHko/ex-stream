@@ -12,7 +12,7 @@ class Stringify extends Concat {
   }
 
   _concat(result, chunk) {
-    return result + chunk;
+    return result + chunk.toString();
   }
 }
 

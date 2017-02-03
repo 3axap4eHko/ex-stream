@@ -16,8 +16,8 @@ class Dispatcher extends Transform {
     this[_executor] = executor;
   }
 
-  _transform(inpuData, enc, next) {
-    const matched = this[_matcher](inpuData);
+  _transform(inputData, enc, next) {
+    const matched = this[_matcher](inputData);
     new Promise(resolve => resolve(this[_executor](matched)))
       .then(result => next(null, result))
       .catch(error => next(error));
