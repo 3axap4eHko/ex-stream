@@ -1,30 +1,40 @@
 'use strict';
 
-import {createServer, request} from 'http';
-import {PassThrough} from 'stream';
+import { readFileSync } from 'fs';
+import { createServer, request } from 'https';
+import { PassThrough } from 'stream';
 import Request from '../src/Request';
 
-function testRequest({data, ...options}) {
+const key = readFileSync(__dirname + '/ssl/private.key', 'utf8');
+const cert = readFileSync(__dirname + '/ssl/certificate.crt', 'utf8');
+
+const serverOptions = { key, cert };
+process.env.NODE_TLS_REJECT_UNAUTHORIZED = "0";
+
+function testRequest({ data, ...options }) {
   return new Promise(resolve => {
-    createServer((req, res) => resolve({req, res}))
+    createServer(serverOptions, (req, res) => resolve({ req, res }))
       .listen(options.port, () => request(options).end(data));
   });
 }
 
+const testPath = '/path/name';
+const testQuery = 'with=query';
+const testUrl = `${testPath}?${testQuery}`;
+
 describe('Request Test Suite', () => {
 
   it('Should handle the request on empty content', done => {
-    const url = '/path/name?with=query';
     testRequest({
-      path: url,
+      path: testUrl,
       port: 8180,
       method: 'GET'
     })
-      .then(({req, res}) => {
+      .then(({ req, res }) => {
         Request
           .request(req)
           .on('data', request => {
-            request.uri.path.should.be.equal(url);
+            request.uri.path.should.be.equal(testPath);
             res.end('');
             done();
           });
@@ -33,7 +43,7 @@ describe('Request Test Suite', () => {
 
   it('Should handle the request and return request object with buffer data on data event', done => {
     const url = '/path/name?with=query';
-    const data = JSON.stringify({test: 1});
+    const data = JSON.stringify({ test: 1 });
 
     testRequest({
       path: url,
@@ -45,11 +55,11 @@ describe('Request Test Suite', () => {
         'Content-Length': Buffer.byteLength(data)
       }
     })
-      .then(({req, res}) => {
+      .then(({ req, res }) => {
         Request
           .request(req)
           .on('data', request => {
-            request.uri.path.should.be.equal(url);
+            request.uri.path.should.be.equal(testPath);
             request.data.should.be.bufferOf(data);
             res.end('');
             done();
@@ -59,7 +69,7 @@ describe('Request Test Suite', () => {
 
   it('Should handle the request and return request object with buffer data by piping', done => {
     const url = '/path/name?with=query';
-    const data = JSON.stringify({test: 1});
+    const data = JSON.stringify({ test: 1 });
 
     testRequest({
       path: url,
@@ -71,68 +81,13 @@ describe('Request Test Suite', () => {
         'Content-Length': Buffer.byteLength(data)
       }
     })
-      .then(({req, res}) => {
+      .then(({ req, res }) => {
         Request
           .request(req)
-          .pipe(new PassThrough({objectMode: true}))
+          .pipe(new PassThrough({ objectMode: true }))
           .on('data', request => {
-            request.uri.path.should.be.equal(url);
+            request.uri.path.should.be.equal(testPath);
             request.data.should.be.bufferOf(data);
-            res.end('');
-            done();
-          });
-      });
-  });
-
-  it('Should handle the request with data parser and return request object with parsed data on data event', done => {
-    const url = '/path/name?with=query';
-    const data = JSON.stringify({test: 1});
-    const dataParser = rawData => JSON.parse(rawData);
-
-    testRequest({
-      path: url,
-      port: 8183,
-      method: 'POST',
-      data,
-      headers: {
-        'Content-Type': 'application/json',
-        'Content-Length': Buffer.byteLength(data)
-      }
-    })
-      .then(({req, res}) => {
-        Request
-          .request(req, dataParser)
-          .on('data', request => {
-            request.uri.path.should.be.equal(url);
-            JSON.stringify(request.data).should.be.equal(data);
-            res.end('');
-            done();
-          });
-      });
-  });
-
-  it('Should handle the request with data parser and return request object with parsed data on pipe', done => {
-    const url = '/path/name?with=query';
-    const data = JSON.stringify({test: 1});
-    const dataParser = rawData => JSON.parse(rawData);
-
-    testRequest({
-      path: url,
-      port: 8184,
-      method: 'POST',
-      data,
-      headers: {
-        'Content-Type': 'application/json',
-        'Content-Length': Buffer.byteLength(data)
-      }
-    })
-      .then(({req, res}) => {
-        Request
-          .request(req, dataParser)
-          .pipe(new PassThrough({objectMode: true}))
-          .on('data', request => {
-            request.uri.path.should.be.equal(url);
-            JSON.stringify(request.data).should.be.equal(data);
             res.end('');
             done();
           });
