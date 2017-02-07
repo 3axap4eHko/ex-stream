@@ -49,8 +49,13 @@ describe('Accumulator Test Suite', () => {
 
     const testString = 'abcdefg';
     const accumulator = new TestConcatStringStream();
+    let counter = 0;
     accumulator.on('data', data => {
       data.should.be.bufferOf(testString);
+      counter++;
+    });
+    accumulator.on('finish', () => {
+      counter.should.be.exactly(1);
       done();
     });
     accumulator.write('a');
@@ -71,7 +76,7 @@ describe('Accumulator Test Suite', () => {
       data.should.be.bufferOf(testString.slice(counter * 2, counter * 2 + 2));
       counter++;
     });
-    accumulator.on('end', () => {
+    accumulator.on('finish', () => {
       counter.should.be.exactly(4);
       done();
     });

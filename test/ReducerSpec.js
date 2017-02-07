@@ -45,7 +45,7 @@ describe('Reducer Test Suite', () => {
     sum.on('data', value => {
       value.should.be.exactly(sumValue);
     });
-    sum.on('end', () => {
+    sum.on('finish', () => {
       done();
     });
     splitter.pipe(sum);

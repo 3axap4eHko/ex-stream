@@ -17,25 +17,13 @@ class Accumulator extends Transform {
     }
   }
 
-  end(chunk, encoding, next) {
-    if (chunk !== null && typeof chunk !== 'undefined') {
-      this._charge(chunk, encoding, (error, data) => {
-        if (error) {
-          throw error;
-        }
-        this.push(this._release());
-        super.end(data, encoding, next);
-      });
-    } else {
-      this.push(this._release());
-      return super.end(chunk, encoding, next);
-    }
-  }
-
   _transform(chunk, encoding, next) {
     this._charge(chunk, encoding, next);
   }
-
+  _flush(next) {
+    this.push(this._release());
+    next();
+  }
 }
 
 export default Accumulator;
