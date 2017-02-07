@@ -5,7 +5,9 @@
   "main": "index.js",
   "scripts": {
     "build": "cross-env NODE_ENV=production gulp",
-    "test": "cross-env NODE_ENV=development mocha -r should -r test/_commons.js --compilers js:babel-core/register -R spec -u bdd test/"
+    "test": "cross-env NODE_ENV=development mocha -r should -r test/_commons.js --compilers js:babel-core/register -R spec -u bdd test/",
+    "lint": "eslint src",
+    "precommit": "eslint src"
   },
   "repository": {
     "type": "git",
@@ -34,6 +36,7 @@
     "gulp-eslint": "^3.0.1",
     "gulp-export": "^2.2.0",
     "gulp-sourcemaps": "^2.4.1",
+    "husky": "^0.13.1",
     "mocha": "^3.2.0",
     "should": "^11.2.0"
   },

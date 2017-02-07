@@ -15,7 +15,7 @@ class Request extends Accumulator {
     super({objectMode: true});
     this[_request] = request;
     this[_data] = Buffer.from('');
-    request.pipe(this)
+    request.pipe(this);
   }
 
   _charge(data, enc, next) {
