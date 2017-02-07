@@ -3,9 +3,6 @@
 import {Transform} from 'stream';
 
 class Accumulator extends Transform {
-  static accumulate(options) {
-    return new Accumulator(options);
-  }
 
   constructor(options) {
     super(options);

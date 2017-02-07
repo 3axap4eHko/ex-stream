@@ -1,12 +1,12 @@
 'use strict';
 
-import {Transform} from 'stream';
+import Accumulator from './Accumulator';
 import URI from 'uriil/URI';
 
 const _request = Symbol('Request');
-const _content = Symbol('Content');
+const _data = Symbol('Data');
 
-class Request extends Transform {
+class Request extends Accumulator {
   static request(request, dataTransform) {
     return new Request(request, dataTransform);
   }
@@ -14,18 +14,19 @@ class Request extends Transform {
   constructor(request) {
     super({objectMode: true});
     this[_request] = request;
-    this[_content] = Buffer.from('');
-    request
-      .on('data', data => this[_content] = Buffer.concat([this[_content], data]) )
-      .on('end', () => this.end(this[_content]) );
+    this[_data] = Buffer.from('');
+    request.pipe(this)
   }
 
-  _transform(data, enc, next) {
+  _charge(data, enc, next) {
+    this[_data] = Buffer.concat([this[_data], data]);
+    next();
+  }
+  _release() {
     const protocol = this[_request].connection.encrypted ? 'https' : 'http';
     this[_request].uri = URI.parse(`${protocol}://${this[_request].headers.host}${this[_request].url}`);
-    this[_request].data = data;
-
-    next(null, this[_request]);
+    this[_request].data = this[_data];
+    return this[_request];
   }
 }
 
