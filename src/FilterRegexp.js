@@ -1,15 +1,14 @@
-'use strict';
-
 import Filter from './Filter';
-
-class FilterRegexp extends Filter {
-  static filter(options) {
-    return new FilterRegexp(options);
-  }
-
+/**
+ * Filter stream data by RegExp
+ * @module FilterRegexp
+ */
+export default class FilterRegexp extends Filter {
   constructor({regexp, ...options}) {
     super({filter: value => regexp.test(value), ...options});
   }
 }
 
-export default FilterRegexp;
+export function filter(options) {
+  return new FilterRegexp(options);
+}

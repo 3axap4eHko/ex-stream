@@ -1,9 +1,9 @@
 'use strict';
 
 import { readFileSync } from 'fs';
-import { createServer, request } from 'https';
+import { createServer, request as httpsRequest  } from 'https';
 import { PassThrough } from 'stream';
-import Request from '../src/Request';
+import { request } from '../src/Request';
 
 const key = readFileSync(__dirname + '/ssl/private.key', 'utf8');
 const cert = readFileSync(__dirname + '/ssl/certificate.crt', 'utf8');
@@ -14,7 +14,7 @@ process.env.NODE_TLS_REJECT_UNAUTHORIZED = "0";
 function testRequest({ data, ...options }) {
   return new Promise(resolve => {
     createServer(serverOptions, (req, res) => resolve({ req, res }))
-      .listen(options.port, () => request(options).end(data));
+      .listen(options.port, () => httpsRequest(options).end(data));
   });
 }
 
@@ -31,14 +31,13 @@ describe('Request Test Suite', () => {
       method: 'GET'
     })
       .then(({ req, res }) => {
-        Request
-          .request(req)
+        request(req)
           .on('data', request => {
             request.uri.path.should.be.equal(testPath);
             res.end('');
             done();
           });
-      });
+      }, done);
   });
 
   it('Should handle the request and return request object with buffer data on data event', done => {
@@ -56,15 +55,14 @@ describe('Request Test Suite', () => {
       }
     })
       .then(({ req, res }) => {
-        Request
-          .request(req)
+        request(req)
           .on('data', request => {
             request.uri.path.should.be.equal(testPath);
             request.data.should.be.bufferOf(data);
             res.end('');
             done();
           });
-      });
+      }, done);
   });
 
   it('Should handle the request and return request object with buffer data by piping', done => {
@@ -82,8 +80,7 @@ describe('Request Test Suite', () => {
       }
     })
       .then(({ req, res }) => {
-        Request
-          .request(req)
+        request(req)
           .pipe(new PassThrough({ objectMode: true }))
           .on('data', request => {
             request.uri.path.should.be.equal(testPath);
@@ -91,6 +88,6 @@ describe('Request Test Suite', () => {
             res.end('');
             done();
           });
-      });
+      }, done);
   });
 });

@@ -1,7 +1,7 @@
 'use strict';
 
 import {PassThrough} from 'stream';
-import Splitter from '../src/Splitter';
+import { split } from '../src/Splitter';
 import Reducer from '../src/Reducer';
 
 class TestStringStream extends Reducer {
@@ -40,7 +40,7 @@ describe('Reducer Test Suite', () => {
     const values = Array.from({length: 10}).map(() => Math.random() * 20);
     const sumValue = values.reduce( (result, value) => result + value);
     const testCase1 = values.join('\n     ');
-    const splitter = Splitter.split('\n');
+    const splitter = split('\n');
     const sum = new Sum();
     sum.on('data', value => {
       value.should.be.exactly(sumValue);

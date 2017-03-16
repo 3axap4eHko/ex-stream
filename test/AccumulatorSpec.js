@@ -67,6 +67,17 @@ describe('Accumulator Test Suite', () => {
     accumulator.end('g');
   });
 
+  it('Should do not emit empty values', (done) => {
+    const accumulator = new TestConcatStringStream();
+    let counter = 0;
+    accumulator.on('data', () => counter++);
+    accumulator.on('finish', () => {
+      counter.should.be.exactly(0);
+      done();
+    });
+    accumulator.end();
+  });
+
   it('Should accumulate values and emit them in event for group', (done) => {
 
     const testString = 'abcdefg';
@@ -123,6 +134,16 @@ describe('Accumulator Test Suite', () => {
     accumulator.write('e');
     accumulator.write('f');
     accumulator.end('g');
+  });
+
+  it('Should allow read empty values', (done) => {
+
+    const accumulator = new TestConcatStringStream();
+    accumulator.on('readable', () => {
+      ({null: null}).should.have.property('null', accumulator.read());
+      done();
+    });
+    accumulator.end();
   });
 
 });

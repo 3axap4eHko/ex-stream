@@ -1,16 +1,19 @@
-'use strict';
-
 import Accumulator from './Accumulator';
 
 const _data = Symbol('data');
 const _splitter = Symbol('splitter');
 const _shift = Symbol('including splitter to result');
-
-class Splitter extends Accumulator {
-  static split(options) {
-    return new Splitter(options);
-  }
-
+/**
+ * Splits stream data
+ * @module Splitter
+ */
+export default class Splitter extends Accumulator {
+  /**
+   *
+   * @param {String} splitter
+   * @param {Number} includingMode
+   * @param {Object} options
+   */
   constructor({splitter = '\n', includingMode, ...options} = {}) {
     super(options);
     this[_splitter] = splitter;
@@ -18,6 +21,9 @@ class Splitter extends Accumulator {
     this[_data] = '';
   }
 
+  /**
+   * @private
+   */
   _charge(data, enc, next) {
     this[_data] += data.toString();
     let index;
@@ -29,9 +35,14 @@ class Splitter extends Accumulator {
     next();
   }
 
+  /**
+   * @private
+   */
   _release() {
     return this[_data];
   }
 }
 
-export default Splitter;
+export function split(options) {
+  return new Splitter(options);
+}

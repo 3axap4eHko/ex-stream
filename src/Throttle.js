@@ -1,17 +1,28 @@
-'use strict';
-
 import Accumulator from './Accumulator';
 
 const _throttle = Symbol('Data throttler');
-
-class Throttle extends Accumulator {
+/**
+ * Throttles stream data
+ * @module Throttle
+ */
+export default class Throttle extends Accumulator {
   constructor(options) {
     super(options);
-    if (typeof this._throttling !== 'function') {
-      throw new Error('Method _throttling is not defined');
-    }
   }
 
+  /**
+   * Throttle stream data
+   *
+   * @param {any} data
+   * @returns {Boolean}
+   * @abstract
+   */
+  _throttling(data) { // eslint-disable-line no-unused-vars
+    throw new Error('Method _throttling is not defined');
+  }
+  /**
+   * @private
+   */
   _charge(data, enc, next) {
     if (typeof this[_throttle] === 'undefined') {
       this[_throttle] = data;
@@ -25,5 +36,3 @@ class Throttle extends Accumulator {
     next();
   }
 }
-
-export default Throttle;

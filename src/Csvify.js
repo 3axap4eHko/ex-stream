@@ -1,8 +1,6 @@
-'use strict';
-
-import {Transform} from 'stream';
+import { Transform } from 'stream';
 import Accumulator from './Accumulator';
-import Splitter from './Splitter';
+import { split } from './Splitter';
 
 
 class RowParser extends Accumulator {
@@ -10,8 +8,8 @@ class RowParser extends Accumulator {
     return new RowParser(options);
   }
 
-  constructor({escape, quote, delimiter, newLine}) {
-    super({objectMode: true});
+  constructor({ escape, quote, delimiter, newLine }) {
+    super({ objectMode: true });
 
     const escapedQuote = `${escape}${quote}`;
 
@@ -71,7 +69,7 @@ class RowParser extends Accumulator {
         }
       }
 
-      return {records, id: this.id++, row: rowString};
+      return { records, id: this.id++, row: rowString };
     } catch (e) {
       e.message = `${e.message} "${this.row.join(this.newLine)}"`;
       throw e;
@@ -85,12 +83,22 @@ class RowParser extends Accumulator {
 
 const _splitter = Symbol('splitter');
 const _parser = Symbol('parser');
-
-class Csv extends Transform {
-
-  constructor({escape = '"', quote = '"', delimiter = ',', newLine = '\n', ...options} = {}) {
-    super({...options, objectMode: true});
-    this[_splitter] = Splitter.split({
+/**
+ * Parse CSV stream text data to objects
+ * @module CSV
+ */
+export default class Csv extends Transform {
+  /**
+   *
+   * @param {String} escape
+   * @param {String} quote
+   * @param {String} delimiter
+   * @param {String} newLine
+   * @param {Object} options
+   */
+  constructor({ escape = '"', quote = '"', delimiter = ',', newLine = '\n', ...options } = {}) {
+    super({ ...options, objectMode: true });
+    this[_splitter] = split({
       splitter: newLine
     });
     this[_parser] = RowParser.parse({
@@ -105,10 +113,15 @@ class Csv extends Transform {
       .pipe(this[_parser]);
   }
 
+  /**
+   * @private
+   */
   _transform(chunk, enc, next) {
     this[_splitter].write(chunk);
     next();
   }
 }
 
-export default Csv;
+export function csv(options) {
+  return new Csv(options);
+}

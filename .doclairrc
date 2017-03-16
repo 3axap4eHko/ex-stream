@@ -1,0 +1,20 @@
+{
+  "title": "Ex-Stream",
+  "indexFilename": "README.md",
+  "indexHeader": [
+    "[![build status](https://travis-ci.org/3axap4eHko/ex-stream.svg?branch=master)](https://travis-ci.org/3axap4eHko/ex-stream)\n",
+    "## Install",
+    "```bash",
+    "npm install ex-stream",
+    "```"
+  ],
+  "indexFooter": [
+    "## License",
+    "License [The MIT License](http://opensource.org/licenses/MIT)",
+    "Copyright (c) 2016-present Ivan Zakharchenko"
+  ],
+  "sourceDir": "./src",
+  "packageJSON": "package.json",
+  "docsDir": "./docs",
+  "exclude": "utils"
+}

@@ -1,14 +1,12 @@
-'use strict';
-
-const sourceDir = './src';
-const buildDir = './build';
-
 const Del = require('del');
 const Gulp = require('gulp');
 const Babel = require('gulp-babel');
 const Sourcemaps = require('gulp-sourcemaps');
 const ESLlint = require('gulp-eslint');
 const Export = require('gulp-export');
+
+const sourceDir = './src';
+const buildDir = './build';
 
 Gulp.task('clean', cb => {
   return Del([buildDir], cb);

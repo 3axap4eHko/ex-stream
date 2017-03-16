@@ -1,17 +1,19 @@
-'use strict';
-
-import {Transform} from 'stream';
+import { Transform } from 'stream';
 
 const _matcher = Symbol('Matcher');
 const _executor = Symbol('Executor');
-
-class Dispatcher extends Transform {
-  static dispatch(matcher, executor) {
-    return new Dispatcher(matcher, executor);
-  }
-
+/**
+ * Call executor with matched `inputData`
+ * @module Dispatcher
+ */
+export default class Dispatcher extends Transform {
+  /**
+   *
+   * @param {Function} matcher
+   * @param {Function} executor
+   */
   constructor(matcher, executor) {
-    super({objectMode: true});
+    super({ objectMode: true });
     this[_matcher] = matcher;
     this[_executor] = executor;
   }
@@ -24,4 +26,6 @@ class Dispatcher extends Transform {
   }
 }
 
-export default Dispatcher;
+export function dispatch(matcher, executor) {
+  return new Dispatcher(matcher, executor);
+}
