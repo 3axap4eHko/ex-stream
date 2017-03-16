@@ -1,7 +1,9 @@
 import { Transform } from 'stream';
 
 const _middlewares = Symbol('middlewares');
-
+/**
+ * @private
+ */
 function _iterate(iterator, data) {
   return new Promise((resolve, reject) => {
     const next = iterator.next();
