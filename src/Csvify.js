@@ -2,7 +2,9 @@ import { Transform } from 'stream';
 import Accumulator from './Accumulator';
 import { split } from './Splitter';
 
-
+/**
+ * @private
+ */
 class RowParser extends Accumulator {
   static parse(options) {
     return new RowParser(options);
