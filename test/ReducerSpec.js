@@ -1,5 +1,3 @@
-'use strict';
-
 import {PassThrough} from 'stream';
 import { split } from '../src/Splitter';
 import Reducer from '../src/Reducer';

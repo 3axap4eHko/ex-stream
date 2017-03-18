@@ -5,6 +5,18 @@ const _executor = Symbol('Executor');
 /**
  * Call executor with matched `inputData`
  * @module Dispatcher
+ * @example
+ * import { createServer } from 'http';
+ * import { dispatch } from 'ex-stream/Dispatcher';
+ *
+ * const matcher = req => requestParser(req);
+ * const executor = params => JSON.stringify(params);
+ *
+ * createServer((req, res) => {
+ *    dispatch(matcher, executor)
+ *      .on(res)
+ * }).listen(3000, 'localhost');
+ *
  */
 export default class Dispatcher extends Transform {
   /**
@@ -18,6 +30,9 @@ export default class Dispatcher extends Transform {
     this[_executor] = executor;
   }
 
+  /**
+   * @private
+   */
   _transform(inputData, enc, next) {
     const matched = this[_matcher](inputData);
     new Promise(resolve => resolve(this[_executor](matched)))

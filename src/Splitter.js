@@ -6,6 +6,14 @@ const _shift = Symbol('including splitter to result');
 /**
  * Splits stream data
  * @module Splitter
+ * @example
+ * import { createReadStream } from 'fs';
+ * import { split } from 'ex-stream/Splitter';
+ * import { log } from 'ex-stream/LogStream';
+ *
+ * createReadStream('filename')
+ *    .pipe(split({ splitter: '\n' }))
+ *    .pipe(log()); // display file content line by line
  */
 export default class Splitter extends Accumulator {
   /**

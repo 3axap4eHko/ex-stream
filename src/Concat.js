@@ -2,6 +2,44 @@ import Reducer from './Reducer';
 /**
  * Concatenate stream data by `_concat` function
  * @module Concat
+ * @abstract
+ * @example
+ * import Concat from 'ex-stream/Concat';
+ * import { log } from 'ex-stream/LogStream';
+ *
+ * class ConcatArray extends Concat {
+ *  constructor(options) {
+ *    super({init: [], options});
+ *  }
+ *  _concat(result, chunk, enc) {
+ *    return result.concat([chunk]);
+ *  }
+ * }
+ *
+ * const concatArray = new ConcatArray();
+ * concatArray.pipe(log()); // [1,2,3,4,5]
+ * concatArray.write(1);
+ * concatArray.write(2);
+ * concatArray.write(3);
+ * concatArray.write(4);
+ * concatArray.end(5);
+ *
+ * class ConcatString extends Concat {
+ *  constructor(options) {
+ *    super({init: '', options});
+ *  }
+ *  _concat(result, chunk, enc) {
+ *    return result + chunk;
+ *  }
+ * }
+ *
+ * const concatString = new ConcatString();
+ * concatString.pipe(log()); // 'abcde'
+ * concatString.write('a');
+ * concatString.write('b');
+ * concatString.write('c');
+ * concatString.write('d');
+ * concatString.end('e');
  */
 export default class Concat extends Reducer {
   /**

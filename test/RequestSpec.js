@@ -1,5 +1,3 @@
-'use strict';
-
 import { readFileSync } from 'fs';
 import { createServer, request as httpsRequest  } from 'https';
 import { PassThrough } from 'stream';
@@ -58,7 +56,7 @@ describe('Request Test Suite', () => {
         request(req)
           .on('data', request => {
             request.uri.path.should.be.equal(testPath);
-            request.data.should.be.bufferOf(data);
+            request.rawData.should.be.bufferOf(data);
             res.end('');
             done();
           });
@@ -84,7 +82,7 @@ describe('Request Test Suite', () => {
           .pipe(new PassThrough({ objectMode: true }))
           .on('data', request => {
             request.uri.path.should.be.equal(testPath);
-            request.data.should.be.bufferOf(data);
+            request.rawData.should.be.bufferOf(data);
             res.end('');
             done();
           });

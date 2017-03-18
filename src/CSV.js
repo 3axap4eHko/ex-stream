@@ -88,8 +88,18 @@ const _parser = Symbol('parser');
 /**
  * Parse CSV stream text data to objects
  * @module CSV
+ * @example
+ * import { createReadStream } from 'fs';
+ * import { csv } from 'ex-stream/CSV';
+ * import { log } from 'ex-stream/LogStream';
+ *
+ * createReadStream('data.csv')
+ *    .pipe(csv({ escape = '"', quote = '"', delimiter = ',', newLine = '\n' }))
+ *    .pipe(log());
+ *
+ * fileStream.pipe(csvStream);
  */
-export default class Csv extends Transform {
+export default class CSV extends Transform {
   /**
    *
    * @param {String} escape
@@ -123,7 +133,11 @@ export default class Csv extends Transform {
     next();
   }
 }
-
+/**
+ * CSV Stream factory function
+ * @param {Object} options
+ * @returns {CSV}
+ */
 export function csv(options) {
-  return new Csv(options);
+  return new CSV(options);
 }

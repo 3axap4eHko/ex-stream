@@ -1,7 +1,5 @@
-'use strict';
-
 import {PassThrough} from 'stream';
-import Csvify from '../src/Csvify';
+import CSV from '../src/CSV';
 
 
 const testCase1 = `
@@ -36,7 +34,7 @@ const testCase3Expect = [
 describe('Csvify Test Suite', () => {
 
   it('Test case 1', done => {
-    const csv = new Csvify();
+    const csv = new CSV();
     let counter = 0;
     csv.on('data', data => {
       const {records, id} = data;
@@ -51,7 +49,7 @@ describe('Csvify Test Suite', () => {
   });
 
   it('Test case 2', done => {
-    const csv = new Csvify();
+    const csv = new CSV();
     let counter = 0;
     csv.on('data', ({records, id}) => {
       records.should.be.eql(testCase2Expect[id]);
@@ -65,7 +63,7 @@ describe('Csvify Test Suite', () => {
   });
 
   it('Test case 3', done => {
-    const csv = new Csvify();
+    const csv = new CSV();
     let counter = 0;
     csv.on('data', ({records, id}) => {
       records.should.be.eql(testCase3Expect[id]);

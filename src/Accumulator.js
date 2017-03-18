@@ -3,7 +3,10 @@ import { Transform } from 'stream';
  * Accumulate stream data by charging and release it on stream finish
  * @module Accumulator
  * @example
- * class MyStream extends Accumulator {
+ * import Accumulator from 'ex-stream/Accumulator';
+ * import { log } from 'ex-stream/LogStream';
+ *
+ * class Concat extends Accumulator {
  *    data = '';
  *   _charge(data, enc, next) {
  *      this.data += data;
@@ -17,15 +20,16 @@ import { Transform } from 'stream';
  *      }
  *   }
  * }
- * const accumulator = new MyStream();
- * accumulator.on('data', data => console.log(data)); // 'abcdefg'
- * accumulator.write('a');
- * accumulator.write('b');
- * accumulator.write('c');
- * accumulator.write('d');
- * accumulator.write('e');
- * accumulator.write('f');
- * accumulator.end('g');
+ * const concat = new Concat();
+ * concat.pipe(log()); // 'abcdefg'
+ *
+ * concat.write('a');
+ * concat.write('b');
+ * concat.write('c');
+ * concat.write('d');
+ * concat.write('e');
+ * concat.write('f');
+ * concat.end('g');
  */
 export default class Accumulator extends Transform {
   /**

@@ -9,51 +9,56 @@ Accumulate stream data by charging and release it on stream finish
   - [`_release()`](#accumulator-method-_release)
 
 
-
-
-<a id="class-accumulator"></a><h2>Accumulator</h2>
+<a id="class-accumulator"></a><h2>class Accumulator</h2>
 > Accumulate stream data by charging and release it on stream finish
 
+<h2>Constructor</h2>
 
-<a id="accumulator-constructor-constructor"></a>
-```javascript
-new Accumulator(options: Object)
+``` javascript
+constructor(options: Object)
 ```
+<a id="accumulator-constructor-constructor"></a>
+
+**Arguments:**
+
+- `options`: `Object` - Stream options
+
 
 ---
-
-
-
 <h2>Methods</h2>
 <a id="accumulator-method-_charge"></a>
-<h3>_charge(data: any, encoding: String, next: Function)</h3>
+
+``` javascript
+_charge(data: any, encoding: String, next: Function)
+```
 
 > Charging stream
 
+
 **Arguments:**
-  
+
 - `data`: `any`
 - `encoding`: `String`
 - `next`: `Function`
 
-
 ---
 <a id="accumulator-method-_release"></a>
-<h3>_release()</h3>
+
+``` javascript
+_release()
+```
 
 > Release charged data
 
 
 **Returns:** `*`
 
----
-
-
-
-
 **Example**:
-``` javascript
-class MyStream extends Accumulator {
+  ``` javascript
+  import Accumulator from 'ex-stream/Accumulator';
+import { log } from 'ex-stream/LogStream';
+
+class Concat extends Accumulator {
    data = '';
   _charge(data, enc, next) {
      this.data += data;
@@ -67,14 +72,15 @@ class MyStream extends Accumulator {
      }
   }
 }
-const accumulator = new MyStream();
-accumulator.on('data', data => console.log(data)); // 'abcdefg'
-accumulator.write('a');
-accumulator.write('b');
-accumulator.write('c');
-accumulator.write('d');
-accumulator.write('e');
-accumulator.write('f');
-accumulator.end('g');
-```
+const concat = new Concat();
+concat.pipe(log()); // 'abcdefg'
+
+concat.write('a');
+concat.write('b');
+concat.write('c');
+concat.write('d');
+concat.write('e');
+concat.write('f');
+concat.end('g');
+  ```
 

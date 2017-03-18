@@ -4,18 +4,30 @@ const _representative = Symbol('Composer representative');
 /**
  * Compose streams into single stream
  * @module Composer
+ * @example
+ * import { createWriteStream } from 'fs';
+ * import { compose } from 'ex-stream/Composer';
+ *
+ * const fileStream = fs.createWriteStream('myapp.log');
+ * const composed = compose({
+ *    streams: [
+ *      fileStream,
+ *      process.stdout,
+ *    ]
+ * });
+ * composed.end('Some data'); // write to file and stdout
  */
 export default class Composer extends Transform {
   /**
    *
-   * @param {Array.<Stream>} streams Array of Streams
-   * @param {Object} options Stream options
+   * @param {Array.<Stream>} options.streams - Array of Streams
+   * @param {Object} options - Stream options
    */
   constructor({ streams, ...options }) {
     super(options);
     this[_representative] = new PassThrough(options);
     streams
-      .reduce((source, Target) => source.pipe(new Target()), this)
+      .reduce((source, target) => source.pipe(target), this)
       .pipe(this[_representative]);
   }
 
