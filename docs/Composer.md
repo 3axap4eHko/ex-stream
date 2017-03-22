@@ -71,7 +71,7 @@ unpipe(stream: Stream)
 
 <a id="function-compose"></a><h2>function compose</h2>
 ``` javascript
-import { compose } from '/Users/izakharc/projects/ex-stream/src/Composer';
+import { compose } from 'src/Composer';
 ```
 > Composer factory function
 

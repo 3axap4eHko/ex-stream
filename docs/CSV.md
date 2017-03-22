@@ -34,7 +34,7 @@ fileStream.pipe(csvStream);
 
 <a id="function-csv"></a><h2>function csv</h2>
 ``` javascript
-import { csv } from '/Users/izakharc/projects/ex-stream/src/CSV';
+import { csv } from 'src/CSV';
 ```
 > CSV Stream factory function
 

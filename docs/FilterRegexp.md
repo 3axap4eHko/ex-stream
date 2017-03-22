@@ -38,7 +38,7 @@ filterStream.end('any string');
 
 <a id="function-filter"></a><h2>function filter</h2>
 ``` javascript
-import { filter } from '/Users/izakharc/projects/ex-stream/src/FilterRegexp';
+import { filter } from 'src/FilterRegexp';
 ```
 > FilterRegexp stream factory function
 

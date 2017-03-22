@@ -52,7 +52,7 @@ createServer((req, res) => {
 
 <a id="function-middleware"></a><h2>function middleware</h2>
 ``` javascript
-import { middleware } from '/Users/izakharc/projects/ex-stream/src/Middleware';
+import { middleware } from 'src/Middleware';
 ```
 > Middlewared stream factory function
 

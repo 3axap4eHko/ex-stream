@@ -36,7 +36,7 @@ inputStream.end('e');
 
 <a id="function-stringify"></a><h2>function stringify</h2>
 ``` javascript
-import { stringify } from '/Users/izakharc/projects/ex-stream/src/Stringify';
+import { stringify } from 'src/Stringify';
 ```
 ``` javascript
 function stringify()

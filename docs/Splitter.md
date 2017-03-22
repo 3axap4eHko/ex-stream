@@ -32,7 +32,7 @@ createReadStream('filename')
 
 <a id="function-split"></a><h2>function split</h2>
 ``` javascript
-import { split } from '/Users/izakharc/projects/ex-stream/src/Splitter';
+import { split } from 'src/Splitter';
 ```
 ``` javascript
 function split()

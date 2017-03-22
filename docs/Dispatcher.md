@@ -35,7 +35,7 @@ createServer((req, res) => {
 
 <a id="function-dispatch"></a><h2>function dispatch</h2>
 ``` javascript
-import { dispatch } from '/Users/izakharc/projects/ex-stream/src/Dispatcher';
+import { dispatch } from 'src/Dispatcher';
 ```
 ``` javascript
 function dispatch()

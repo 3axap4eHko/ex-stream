@@ -28,7 +28,7 @@ createServer((req, res) => {
 
 <a id="function-json"></a><h2>function json</h2>
 ``` javascript
-import { json } from '/Users/izakharc/projects/ex-stream/src/Json';
+import { json } from 'src/Json';
 ```
 > JSON stream factory function
 

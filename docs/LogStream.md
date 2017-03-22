@@ -40,7 +40,7 @@ fileLogger.write('test'); // logs 'test' to file
 
 <a id="function-log"></a><h2>function log</h2>
 ``` javascript
-import { log } from '/Users/izakharc/projects/ex-stream/src/LogStream';
+import { log } from 'src/LogStream';
 ```
 > Log stream factory function
 
