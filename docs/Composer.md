@@ -78,12 +78,3 @@ import { compose } from 'src/Composer';
 ``` javascript
 function compose(options)
 ```
-
-> Composer factory function
-
-**Parameters:**
-
-- `options`: `Object`
-
-**Returns:** `Composer`
-

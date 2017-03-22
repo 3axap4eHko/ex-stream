@@ -35,8 +35,3 @@ import { json } from 'src/Json';
 ``` javascript
 function json()
 ```
-
-> JSON stream factory function
-
-**Returns:** `Json`
-

@@ -47,12 +47,3 @@ import { log } from 'src/LogStream';
 ``` javascript
 function log(options)
 ```
-
-> Log stream factory function
-
-**Parameters:**
-
-- `options`: `Object`
-
-**Returns:** `LogStream`
-

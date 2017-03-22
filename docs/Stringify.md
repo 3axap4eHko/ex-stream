@@ -41,5 +41,3 @@ import { stringify } from 'src/Stringify';
 ``` javascript
 function stringify()
 ```
-
-

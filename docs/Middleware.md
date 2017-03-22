@@ -59,12 +59,3 @@ import { middleware } from 'src/Middleware';
 ``` javascript
 function middleware(middlewares)
 ```
-
-> Middlewared stream factory function
-
-**Parameters:**
-
-- `middlewares`: `*`
-
-**Returns:** `Middleware`
-

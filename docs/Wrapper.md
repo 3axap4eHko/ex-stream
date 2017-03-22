@@ -9,5 +9,3 @@ import Wrapper from 'ex-stream/Wrapper';
 ``` javascript
 function Wrap()
 ```
-
-

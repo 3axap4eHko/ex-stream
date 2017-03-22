@@ -40,5 +40,3 @@ import { dispatch } from 'src/Dispatcher';
 ``` javascript
 function dispatch()
 ```
-
-

@@ -45,12 +45,3 @@ import { filter } from 'src/FilterRegexp';
 ``` javascript
 function filter(options)
 ```
-
-> FilterRegexp stream factory function
-
-**Parameters:**
-
-- `options`: `*`
-
-**Returns:** `FilterRegexp`
-

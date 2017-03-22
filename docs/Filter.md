@@ -47,12 +47,3 @@ import { filter } from 'src/Filter';
 ``` javascript
 function filter(options)
 ```
-
-> Filter stream factory function
-
-**Parameters:**
-
-- `options`: `Object`
-
-**Returns:** `Filter`
-

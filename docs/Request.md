@@ -39,12 +39,3 @@ import { request } from 'src/Request';
 ``` javascript
 function request(request)
 ```
-
-> Request stream factory function
-
-**Parameters:**
-
-- `request`: `IncomingMessage`
-
-**Returns:** `Request`
-

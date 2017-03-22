@@ -37,5 +37,3 @@ import { split } from 'src/Splitter';
 ``` javascript
 function split()
 ```
-
-

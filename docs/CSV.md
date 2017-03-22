@@ -50,12 +50,3 @@ import { csv } from 'src/CSV';
 ``` javascript
 function csv(options)
 ```
-
-> CSV Stream factory function
-
-**Parameters:**
-
-- `options`: `Object`
-
-**Returns:** `CSV`
-
