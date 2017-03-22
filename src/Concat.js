@@ -45,6 +45,7 @@ export default class Concat extends Reducer {
   /**
    *
    * @param {Object} options stream options
+   * @example <caption>Class is abstract</caption>
    */
   constructor(options) {
     super(options);

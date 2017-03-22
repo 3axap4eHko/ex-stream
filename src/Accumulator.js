@@ -34,6 +34,7 @@ import { Transform } from 'stream';
 export default class Accumulator extends Transform {
   /**
    * @param {Object} options Stream options
+   * @example <caption>Class is abstract</caption>
    */
   constructor(options) {
     super(options);

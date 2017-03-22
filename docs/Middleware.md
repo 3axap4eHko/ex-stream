@@ -1,30 +1,19 @@
 # Middleware
 
-Pass stream data to middleware list
-
-
 - [`class Middleware`](#class-middleware)
   - [`constructor()`](#middleware-constructor-constructor)
-
-
 - [`function middleware`](#function-middleware)
+
 <a id="class-middleware"></a><h2>class Middleware</h2>
+``` javascript
+import Middleware from 'ex-stream/Middleware';
+```
 > Pass stream data to middleware list
 
-<h2>Constructor</h2>
+
 
 ``` javascript
-constructor(middlewares: Array.<Function>)
-```
-<a id="middleware-constructor-constructor"></a>
-
-**Arguments:**
-
-- `middlewares`: `Array.<Function>`
-
-**Example**:
-  ``` javascript
-  import { createServer } from 'http';
+import { createServer } from 'http';
 import { middleware } from 'ex-stream/Middleware';
 
 const middlewares = [
@@ -51,15 +40,29 @@ createServer((req, res) => {
    middleware(middlewares)
      .end({ req, res });
 }).listen(3000, 'localhost');
-  ```
----<a id="function-middleware"></a><h2>function middleware</h2>``` javascript
-function middleware(middlewares)
+```
+
+
+
+<h2>Constructor</h2>
+<a id="middleware-constructor-constructor"></a>
+
+
+---
+
+<a id="function-middleware"></a><h2>function middleware</h2>
+``` javascript
+import { middleware } from '/Users/izakharc/projects/ex-stream/src/Middleware';
 ```
 > Middlewared stream factory function
 
+``` javascript
+function middleware(middlewares)
+```
 
+> Middlewared stream factory function
 
-**Arguments:**
+**Parameters:**
 
 - `middlewares`: `*`
 

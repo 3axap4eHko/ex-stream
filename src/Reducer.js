@@ -32,6 +32,7 @@ export default class Reducer extends Accumulator {
    *
    * @param {any} init
    * @param {Object} options
+   * @example <caption>Class is abstract</caption>
    */
   constructor({ init, ...options } = {}) {
     super(options);

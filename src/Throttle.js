@@ -6,6 +6,11 @@ const _throttle = Symbol('Data throttler');
  * @module Throttle
  */
 export default class Throttle extends Accumulator {
+  /**
+   *
+   * @param options
+   * @example <caption>Class is abstract</caption>
+   */
   constructor(options) {
     super(options);
   }
