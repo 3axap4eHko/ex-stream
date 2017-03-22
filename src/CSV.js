@@ -107,6 +107,8 @@ export default class CSV extends Transform {
    * @param {String} delimiter
    * @param {String} newLine
    * @param {Object} options
+   * @example <caption>Basic usage</caption>
+   *   new CSV({ escape = '"', quote = '"', delimiter = ',', newLine = '\n' });
    */
   constructor({ escape = '"', quote = '"', delimiter = ',', newLine = '\n', ...options } = {}) {
     super({ ...options, objectMode: true });

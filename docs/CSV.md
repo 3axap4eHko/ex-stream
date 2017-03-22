@@ -30,6 +30,15 @@ fileStream.pipe(csvStream);
 <a id="csv-constructor-constructor"></a>
 
 
+
+##### Basic usage
+
+
+``` javascript
+new CSV({ escape = '"', quote = '"', delimiter = ',', newLine = '\n' });
+```
+
+
 ---
 
 <a id="function-csv"></a><h2>function csv</h2>
