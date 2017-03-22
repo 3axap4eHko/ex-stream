@@ -40,7 +40,7 @@ filterStream.end('any string');
 
 <a id="function-filter"></a><h2>function filter</h2>
 ``` javascript
-import { filter } from 'src/Filter';
+import { filter } from 'ex-stream/Filter';
 ```
 > Filter stream factory function
 

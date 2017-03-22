@@ -43,7 +43,7 @@ new CSV({ escape = '"', quote = '"', delimiter = ',', newLine = '\n' });
 
 <a id="function-csv"></a><h2>function csv</h2>
 ``` javascript
-import { csv } from 'src/CSV';
+import { csv } from 'ex-stream/CSV';
 ```
 > CSV Stream factory function
 

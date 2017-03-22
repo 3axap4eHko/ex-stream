@@ -32,7 +32,7 @@ createServer((req, res) => {
 
 <a id="function-request"></a><h2>function request</h2>
 ``` javascript
-import { request } from 'src/Request';
+import { request } from 'ex-stream/Request';
 ```
 > Request stream factory function
 
