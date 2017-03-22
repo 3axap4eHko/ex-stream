@@ -42,7 +42,7 @@ sumStream.end(1);
 
 
 
-##### Class is abstract
+> Class is abstract
 
 
 ---

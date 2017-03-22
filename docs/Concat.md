@@ -58,7 +58,7 @@ concatString.end('e');
 
 
 
-##### Class is abstract
+> Class is abstract
 
 
 ---

@@ -50,7 +50,7 @@ concat.end('g');
 
 
 
-##### Class is abstract
+> Class is abstract
 
 
 ---

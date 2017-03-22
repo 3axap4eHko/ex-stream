@@ -16,7 +16,7 @@ import Throttle from 'ex-stream/Throttle';
 
 
 
-##### Class is abstract
+> Class is abstract
 
 
 ---
