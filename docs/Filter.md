@@ -32,8 +32,27 @@ filterStream.end('any string');
 
 
 
-<h2>Constructor</h2>
+<h3>Constructor</h3>
 <a id="filter-constructor-constructor"></a>
+
+
+**Parameters:**
+
+- `filter`: `Function` - function that returns bool
+- `options`: `Object` - Stream options
+
+
+
+> Creates Filter stream instance
+
+
+``` javascript
+new Filter({
+   filter(data) {
+     // ...
+   }
+ })
+```
 
 
 ---

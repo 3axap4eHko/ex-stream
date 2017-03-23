@@ -52,7 +52,9 @@ function _iterate(iterator, data) {
  */
 export default class Middleware extends Transform {
   /**
-   * @param {Array.<Function>} middlewares
+   * @param {Array.<Function>} middlewares - list of middleware
+   * @example <caption>Creates Middleware stream instance</caption>
+   *  new Middleware(middlewareList);
    */
   constructor(middlewares) {
     super({ objectMode: true });
@@ -73,7 +75,7 @@ export default class Middleware extends Transform {
 }
 /**
  * Middlewared stream factory function
- * @param middlewares
+ * @param {Array.<Function>} middlewares
  * @returns {Middleware}
  */
 export function middleware(middlewares) {

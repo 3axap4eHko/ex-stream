@@ -24,8 +24,22 @@ createServer((req, res) => {
 
 
 
-<h2>Constructor</h2>
+<h3>Constructor</h3>
 <a id="request-constructor-constructor"></a>
+
+
+**Parameters:**
+
+- `request`: `IncomingMessage` - request object
+
+
+
+> Creates Request stream instance
+
+
+``` javascript
+new Request(request);
+```
 
 
 ---

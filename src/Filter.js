@@ -23,8 +23,15 @@ const _filter = Symbol('filter');
  */
 export default class Filter extends Transform {
   /**
-   * @param {Function} filter
-   * @param {Object} options
+   * @param {Function} filter - function that returns bool
+   * @param {Object} options - Stream options
+   * @example <caption>Creates Filter stream instance</caption>
+   *
+   *  new Filter({
+   *    filter(data) {
+   *      // ...
+   *    }
+   *  })
    */
   constructor({ filter, ...options }) {
     super(options);

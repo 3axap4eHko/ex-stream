@@ -18,6 +18,16 @@ import Filter from './Filter';
  * filterStream.end('any string');
  */
 export default class FilterRegexp extends Filter {
+  /**
+   *
+   * @param {RegExp} regexp
+   * @param {Object} options
+   * @example <caption>Creates FilterRegexp stream instance</caption>
+   *
+   *  new FilterRegexp({
+   *    regexp: /^\w+$/
+   *  })
+   */
   constructor({ regexp, ...options }) {
     super({ filter: value => regexp.test(value), ...options });
   }

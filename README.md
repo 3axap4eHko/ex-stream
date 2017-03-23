@@ -18,7 +18,7 @@ npm install ex-stream
 - [Filter](docs/Filter.md) - Filter stream data by filter callback
 - [FilterRegexp](docs/FilterRegexp.md) - Filter stream data by RegExp
 - [Jsonify](docs/Json.md) - Converts stream text data to JSON object
-- [LogStream](docs/LogStream.md) - Logs stream data
+- [Log](docs/Log.md) - Logs stream data
 - [Middleware](docs/Middleware.md) - Pass stream data to middleware list
 - [Reducer](docs/Reducer.md) - Reduce stream data
 - [Request](docs/Request.md) - Puts request object as stream

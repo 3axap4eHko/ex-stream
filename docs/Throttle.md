@@ -11,8 +11,26 @@ import Throttle from 'ex-stream/Throttle';
 > Throttles stream data
 
 
-<h2>Constructor</h2>
+
+``` javascript
+import Throttle from 'ex-stream/Throttle';
+
+ class DelayThrottle extends Throttle {
+   _throttling(data, next) {
+     setTimeout(1000, next);
+   }
+ }
+```
+
+
+
+<h3>Constructor</h3>
 <a id="throttle-constructor-constructor"></a>
+
+
+**Parameters:**
+
+- `options`: `*`
 
 
 
@@ -21,7 +39,8 @@ import Throttle from 'ex-stream/Throttle';
 
 ---
 
-<h2>Methods</h2>
+<h3>Methods</h3>
+
 <a id="throttle-method-_throttling"></a>
 
 ``` javascript
@@ -30,12 +49,10 @@ _throttling(data: any)
 
 > Throttle stream data
 
-
 **Parameters:**
 
 - `data`: `any`
 
-**Returns:** `Boolean`
 
 
 

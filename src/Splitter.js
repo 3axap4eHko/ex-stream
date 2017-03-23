@@ -18,11 +18,13 @@ const _shift = Symbol('including splitter to result');
 export default class Splitter extends Accumulator {
   /**
    *
-   * @param {String} splitter
-   * @param {Number} includingMode
-   * @param {Object} options
+   * @param {String} options.splitter - splitting string
+   * @param {Number} options.includingMode - including splitting string to result
+   * @param {Object} options - Stream options
+   * @example <caption>Creates Splitter stream instance</caption>
+   *  new Splitter({ splitter: '|'})
    */
-  constructor({splitter = '\n', includingMode, ...options} = {}) {
+  constructor({ splitter = '\n', includingMode, ...options } = {}) {
     super(options);
     this[_splitter] = splitter;
     this[_shift] = includingMode | 0;
@@ -36,7 +38,7 @@ export default class Splitter extends Accumulator {
     this[_data] += data.toString();
     let index;
     while ((index = this[_data].indexOf(this[_splitter])) >= 0) {
-      const splitted = this[_data].slice(0, index + this[_shift]);
+      const splitted = this[_data].slice(0, index + this[_shift] * this[_splitter].length);
       this.push(splitted);
       this[_data] = this[_data].slice(index + 1);
     }
@@ -50,7 +52,11 @@ export default class Splitter extends Accumulator {
     return this[_data];
   }
 }
-
+/**
+ * Splitter factory function
+ * @param {Object} options
+ * @returns {Splitter}
+ */
 export function split(options) {
   return new Splitter(options);
 }

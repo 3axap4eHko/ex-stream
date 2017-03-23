@@ -24,8 +24,24 @@ createReadStream('filename')
 
 
 
-<h2>Constructor</h2>
+<h3>Constructor</h3>
 <a id="splitter-constructor-constructor"></a>
+
+
+**Parameters:**
+
+- `options.splitter`: `String` - splitting string
+- `options.includingMode`: `Number` - including splitting string to result
+- `options`: `Object` - Stream options
+
+
+
+> Creates Splitter stream instance
+
+
+``` javascript
+new Splitter({ splitter: '|'})
+```
 
 
 ---
@@ -34,6 +50,8 @@ createReadStream('filename')
 ``` javascript
 import { split } from 'ex-stream/Splitter';
 ```
+> Splitter factory function
+
 ``` javascript
-function split()
+function split(options)
 ```

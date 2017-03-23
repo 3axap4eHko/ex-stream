@@ -17,7 +17,9 @@ import Concat from './Concat';
  */
 export default class Stringify extends Concat {
   /**
-   * @param {Object} options
+   * @param {Object} options - Stream options
+   * @example <caption>Creates Stringify stream instance</caption>
+   *  new Stringify();
    */
   constructor(options) {
     super({...options, init: ''});
@@ -30,7 +32,12 @@ export default class Stringify extends Concat {
     return result + chunk.toString();
   }
 }
-
+/**
+ * Stringify factory function
+ *
+ * @param {Object} options
+ * @returns {Stringify}
+ */
 export function stringify(options) {
   return new Stringify(options);
 }

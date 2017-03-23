@@ -28,8 +28,22 @@ inputStream.end('e');
 
 
 
-<h2>Constructor</h2>
+<h3>Constructor</h3>
 <a id="stringify-constructor-constructor"></a>
+
+
+**Parameters:**
+
+- `options`: `Object` - Stream options
+
+
+
+> Creates Stringify stream instance
+
+
+``` javascript
+new Stringify();
+```
 
 
 ---
@@ -38,6 +52,8 @@ inputStream.end('e');
 ``` javascript
 import { stringify } from 'ex-stream/Stringify';
 ```
+> Stringify factory function
+
 ``` javascript
-function stringify()
+function stringify(options)
 ```

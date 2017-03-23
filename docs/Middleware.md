@@ -44,8 +44,22 @@ createServer((req, res) => {
 
 
 
-<h2>Constructor</h2>
+<h3>Constructor</h3>
 <a id="middleware-constructor-constructor"></a>
+
+
+**Parameters:**
+
+- `middlewares`: `Array.<Function>` - list of middleware
+
+
+
+> Creates Middleware stream instance
+
+
+``` javascript
+new Middleware(middlewareList);
+```
 
 
 ---

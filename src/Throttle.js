@@ -4,6 +4,15 @@ const _throttle = Symbol('Data throttler');
 /**
  * Throttles stream data
  * @module Throttle
+ * @example
+ *  import Throttle from 'ex-stream/Throttle';
+ *
+ *  class DelayThrottle extends Throttle {
+ *    _throttling(data, next) {
+ *      setTimeout(1000, next);
+ *    }
+ *  }
+ *
  */
 export default class Throttle extends Accumulator {
   /**
@@ -19,12 +28,12 @@ export default class Throttle extends Accumulator {
    * Throttle stream data
    *
    * @param {any} data
-   * @returns {Boolean}
    * @abstract
    */
   _throttling(data) { // eslint-disable-line no-unused-vars
     throw new Error('Method _throttling is not defined');
   }
+
   /**
    * @private
    */
@@ -34,10 +43,10 @@ export default class Throttle extends Accumulator {
     } else {
       this[_throttle] += data;
     }
-    if (!this._throttling(this[_throttle])) {
+    this._throttling(this[_throttle], () => {
       this.push(this[_throttle]);
       delete this[_throttle];
-    }
+    });
     next();
   }
 }

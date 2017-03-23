@@ -37,8 +37,14 @@ sumStream.end(1);
 
 
 
-<h2>Constructor</h2>
+<h3>Constructor</h3>
 <a id="reducer-constructor-constructor"></a>
+
+
+**Parameters:**
+
+- `init`: `*` - reducer init value
+- `options`: `Object`
 
 
 
@@ -47,23 +53,24 @@ sumStream.end(1);
 
 ---
 
-<h2>Methods</h2>
+<h3>Methods</h3>
+
 <a id="reducer-method-_reduce"></a>
 
 ``` javascript
-_reduce(result: any, chunk: any, enc: String, next: Function)
+_reduce(result: *, data: *, enc: String, next: Function)
 ```
 
 > Reduce stream data
 
-
 **Parameters:**
 
-- `result`: `any`
-- `chunk`: `any`
-- `enc`: `String`
+- `result`: `*` - reduced data
+- `data`: `*` - data to reduce
+- `enc`: `String` - data encoding to reduce
 - `next`: `Function`
 
+**Returns:** `*` - result of reducing
 
 
 

@@ -1,4 +1,4 @@
-import {Transform} from 'stream';
+import { Transform } from 'stream';
 
 const _wrapper = Symbol('wrapper');
 /**
@@ -10,9 +10,11 @@ class Wrapper extends Transform {
    *
    * @param {Function} wrapper
    * @param {Object} options
+   * @example <caption>Creates Wrapper stream instance</caption>
+   *  new Wrapper();
    */
-  constructor({wrapper, ...options}) {
-    super({...options, objectMode: true});
+  constructor({ wrapper, ...options }) {
+    super({ ...options, objectMode: true });
     this[_wrapper] = wrapper;
   }
 
@@ -25,7 +27,11 @@ class Wrapper extends Transform {
     next();
   }
 }
-
-export default function Wrap(wrapper) {
-  return new Wrapper({wrapper});
+/**
+ *
+ * @param {Function} wrapper
+ * @returns {Wrapper}
+ */
+export default function wrap(wrapper) {
+  return new Wrapper({ wrapper });
 }

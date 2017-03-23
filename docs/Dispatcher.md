@@ -27,8 +27,30 @@ createServer((req, res) => {
 
 
 
-<h2>Constructor</h2>
+<h3>Constructor</h3>
 <a id="dispatcher-constructor-constructor"></a>
+
+
+**Parameters:**
+
+- `matcher`: `function (inputData: *)` - function matches `inputData` and returns `matchedData`
+- `executor`: `function (matched: *)` - function executed with `matchedData` and returns value or `Promise` that passed to stream
+
+
+
+> Creates Dispatcher stream instance
+
+
+``` javascript
+function matcher(inputData) {
+   // ...
+ }
+ function executor(matchedData) {
+   // ...
+ }
+
+ new Dispatcher(matcher, executor);
+```
 
 
 ---
@@ -38,5 +60,5 @@ createServer((req, res) => {
 import { dispatch } from 'ex-stream/Dispatcher';
 ```
 ``` javascript
-function dispatch()
+function dispatch(matcher, executor)
 ```

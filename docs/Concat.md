@@ -53,8 +53,13 @@ concatString.end('e');
 
 
 
-<h2>Constructor</h2>
+<h3>Constructor</h3>
 <a id="concat-constructor-constructor"></a>
+
+
+**Parameters:**
+
+- `options`: `Object` - Stream options
 
 
 
@@ -63,23 +68,23 @@ concatString.end('e');
 
 ---
 
-<h2>Methods</h2>
+<h3>Methods</h3>
+
 <a id="concat-method-_concat"></a>
 
 ``` javascript
-_concat(result: any, data: any, enc: String)
+_concat(result: *, data: *, enc: String)
 ```
 
 > Stream data concatenation method
 
-
 **Parameters:**
 
-- `result`: `any`
-- `data`: `any`
-- `enc`: `String`
+- `result`: `*` - result of concatenation
+- `data`: `*` - data for concatenation
+- `enc`: `String` - data encoding for concatenation
 
-**Returns:** `any`
+**Returns:** `*` - result of concatenation
 
 
 

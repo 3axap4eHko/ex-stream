@@ -15,6 +15,15 @@ import Stringify from './Stringify';
  */
 export default class Json extends Stringify {
   /**
+   *
+   * @param {Object} options - Stream options
+   * @example <caption>Creates Json stream instance</caption>
+   *  new Json()
+   */
+  constructor(options) {
+    super(options);
+  }
+  /**
    * @private
    */
   _release() {

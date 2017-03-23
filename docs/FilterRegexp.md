@@ -30,8 +30,25 @@ filterStream.end('any string');
 
 
 
-<h2>Constructor</h2>
+<h3>Constructor</h3>
 <a id="filterregexp-constructor-constructor"></a>
+
+
+**Parameters:**
+
+- `regexp`: `RegExp`
+- `options`: `Object`
+
+
+
+> Creates FilterRegexp stream instance
+
+
+``` javascript
+new FilterRegexp({
+   regexp: /^\w+$/
+ })
+```
 
 
 ---

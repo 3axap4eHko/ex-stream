@@ -26,12 +26,21 @@ fileStream.pipe(csvStream);
 
 
 
-<h2>Constructor</h2>
+<h3>Constructor</h3>
 <a id="csv-constructor-constructor"></a>
 
 
+**Parameters:**
 
-> Basic usage
+- `options.escape`: `String=` - Escape string
+- `options.quote`: `String` - Quote string
+- `options.delimiter`: `String` - Delimiter string
+- `options.newLine`: `String` - new line string
+- `options`: `Object` - Stream options
+
+
+
+> Creates CSV stream instance
 
 
 ``` javascript

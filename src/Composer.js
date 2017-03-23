@@ -22,6 +22,13 @@ export default class Composer extends Transform {
    *
    * @param {Array.<Stream>} options.streams - Array of Streams
    * @param {Object} options - Stream options
+   * @example <caption>Creates Composer stream instance</caption>
+   *  new Composer({
+   *    streams: [
+   *      process.stdout,
+   *      fs.createWriteStream('filename.txt'),
+   *    ]
+   *  })
    */
   constructor({ streams, ...options }) {
     super(options);
@@ -32,6 +39,7 @@ export default class Composer extends Transform {
   }
 
   /**
+   * Attaches writable stream
    *
    * @param {Stream} stream
    * @returns {Stream}
@@ -41,7 +49,7 @@ export default class Composer extends Transform {
   }
 
   /**
-   *
+   * Detaches writable stream
    * @param {Stream} stream
    * @returns {Stream}
    */
@@ -51,6 +59,7 @@ export default class Composer extends Transform {
 }
 /**
  * Composer factory function
+ *
  * @param {Object} options
  * @returns {Composer}
  */

@@ -21,8 +21,18 @@ const _executor = Symbol('Executor');
 export default class Dispatcher extends Transform {
   /**
    *
-   * @param {Function} matcher
-   * @param {Function} executor
+   * @param {function(inputData: *)} matcher - function matches `inputData` and returns `matchedData`
+   * @param {function(matched: *)} executor - function executed with `matchedData` and returns value or `Promise` that passed to stream
+   * @example <caption>Creates Dispatcher stream instance</caption>
+   *
+   *  function matcher(inputData) {
+   *    // ...
+   *  }
+   *  function executor(matchedData) {
+   *    // ...
+   *  }
+   *
+   *  new Dispatcher(matcher, executor);
    */
   constructor(matcher, executor) {
     super({ objectMode: true });
@@ -40,7 +50,12 @@ export default class Dispatcher extends Transform {
       .catch(error => next(error));
   }
 }
-
+/**
+ *
+ * @param {Function} matcher
+ * @param {Function} executor
+ * @returns {Dispatcher}
+ */
 export function dispatch(matcher, executor) {
   return new Dispatcher(matcher, executor);
 }

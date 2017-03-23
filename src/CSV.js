@@ -102,12 +102,12 @@ const _parser = Symbol('parser');
 export default class CSV extends Transform {
   /**
    *
-   * @param {String} escape
-   * @param {String} quote
-   * @param {String} delimiter
-   * @param {String} newLine
-   * @param {Object} options
-   * @example <caption>Basic usage</caption>
+   * @param {String} [options.escape="] - Escape string
+   * @param {String} options.quote - Quote string
+   * @param {String} options.delimiter - Delimiter string
+   * @param {String} options.newLine - new line string
+   * @param {Object} options - Stream options
+   * @example <caption>Creates CSV stream instance</caption>
    *   new CSV({ escape = '"', quote = '"', delimiter = ',', newLine = '\n' });
    */
   constructor({ escape = '"', quote = '"', delimiter = ',', newLine = '\n', ...options } = {}) {

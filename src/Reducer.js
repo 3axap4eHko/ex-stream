@@ -30,7 +30,7 @@ const _result = Symbol('Reducer result');
 export default class Reducer extends Accumulator {
   /**
    *
-   * @param {any} init
+   * @param {*} init - reducer init value
    * @param {Object} options
    * @example <caption>Class is abstract</caption>
    */
@@ -42,12 +42,13 @@ export default class Reducer extends Accumulator {
   /**
    * Reduce stream data
    *
-   * @param {any} result
-   * @param {any} chunk
-   * @param {String} enc
+   * @param {*} result - reduced data
+   * @param {*} data - data to reduce
+   * @param {String} enc - data encoding to reduce
    * @param {Function} next
+   * @returns {*} - result of reducing
    */
-  _reduce(result, chunk, enc, next) { // eslint-disable-line no-unused-vars
+  _reduce(result, data, enc, next) { // eslint-disable-line no-unused-vars
     throw new Error('Method _reduce is abstract');
   }
 

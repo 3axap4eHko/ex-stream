@@ -1,12 +1,12 @@
-# LogStream
+# Log
 
-- [`class LogStream`](#class-logstream)
-  - [`constructor()`](#logstream-constructor-constructor)
+- [`class Log`](#class-log)
+  - [`constructor()`](#log-constructor-constructor)
 - [`function log`](#function-log)
 
-<a id="class-logstream"></a><h2>class LogStream</h2>
+<a id="class-log"></a><h2>class Log</h2>
 ``` javascript
-import LogStream from 'ex-stream/LogStream';
+import Log from 'ex-stream/Log';
 ```
 > Logs stream data
 
@@ -14,7 +14,7 @@ import LogStream from 'ex-stream/LogStream';
 
 ``` javascript
 import { appendFileSync } from 'fs';
-import { log } from 'ex-stream/LogStream';
+import { log } from 'ex-stream/Log';
 
 const logger = log();
 logger.end('test'); // logs 'test' to stdout
@@ -32,15 +32,34 @@ fileLogger.write('test'); // logs 'test' to file
 
 
 
-<h2>Constructor</h2>
-<a id="logstream-constructor-constructor"></a>
+<h3>Constructor</h3>
+<a id="log-constructor-constructor"></a>
+
+
+**Parameters:**
+
+- `logger`: `Function`
+- `options`: `Object`
+
+
+
+> Creates Log stream instance
+
+
+``` javascript
+new Log({
+   logger(data) {
+     console.log(data);
+   }
+ })
+```
 
 
 ---
 
 <a id="function-log"></a><h2>function log</h2>
 ``` javascript
-import { log } from 'ex-stream/LogStream';
+import { log } from 'ex-stream/Log';
 ```
 > Log stream factory function
 

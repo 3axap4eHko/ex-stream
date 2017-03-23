@@ -8,10 +8,10 @@ const logTypes = {
 /**
  * Logs stream data
  *
- * @module LogStream
+ * @module Log
  * @example
  * import { appendFileSync } from 'fs';
- * import { log } from 'ex-stream/LogStream';
+ * import { log } from 'ex-stream/Log';
  *
  * const logger = log();
  * logger.end('test'); // logs 'test' to stdout
@@ -27,7 +27,18 @@ const logTypes = {
  * fileLogger.write('test'); // logs 'test' to file
  *
  */
-export default class LogStream extends PassThrough {
+export default class Log extends PassThrough {
+  /**
+   *
+   * @param {Function} logger
+   * @param {Object} options
+   * @example <caption>Creates Log stream instance</caption>
+   *  new Log({
+   *    logger(data) {
+   *      console.log(data);
+   *    }
+   *  })
+   */
   constructor({logger, ...options}) {
     super({ objectMode: true, ...options });
     const logFunction = typeof logger === 'function' ? logger : (logger in logTypes ? logTypes[logger] : logTypes.log);
@@ -38,8 +49,8 @@ export default class LogStream extends PassThrough {
  * Log stream factory function
  *
  * @param {Object} options
- * @returns {LogStream}
+ * @returns {Log}
  */
 export function log(options) {
-  return new LogStream(options);
+  return new Log(options);
 }

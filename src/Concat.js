@@ -44,7 +44,7 @@ import Reducer from './Reducer';
 export default class Concat extends Reducer {
   /**
    *
-   * @param {Object} options stream options
+   * @param {Object} options - Stream options
    * @example <caption>Class is abstract</caption>
    */
   constructor(options) {
@@ -55,10 +55,10 @@ export default class Concat extends Reducer {
    * Stream data concatenation method
    *
    * @abstract
-   * @param {any} result
-   * @param {any} data
-   * @param {String} enc
-   * @returns {any}
+   * @param {*} result - result of concatenation
+   * @param {*} data - data for concatenation
+   * @param {String} enc - data encoding for concatenation
+   * @returns {*} - result of concatenation
    */
   _concat(result, data, enc) { // eslint-disable-line no-unused-vars
     throw new Error('Method _concat is abstract');

@@ -33,7 +33,7 @@ import { Transform } from 'stream';
  */
 export default class Accumulator extends Transform {
   /**
-   * @param {Object} options Stream options
+   * @param {Object} [options={}] - Stream options
    * @example <caption>Class is abstract</caption>
    */
   constructor(options) {
@@ -44,9 +44,9 @@ export default class Accumulator extends Transform {
    * Charging stream
    *
    * @abstract
-   * @param {any} data
-   * @param {String} encoding
-   * @param {Function} next
+   * @param {*} data - charged data
+   * @param {String} encoding - data encoding
+   * @param {Function} next - pass function
    */
   _charge(data, encoding, next) { // eslint-disable-line no-unused-vars
     throw new Error('Method _charge is abstract');
@@ -56,7 +56,7 @@ export default class Accumulator extends Transform {
    * Release charged data
    *
    * @abstract
-   * @returns {*}
+   * @returns {*} - left data
    */
   _release() {
     throw new Error('Method _release is not defined');

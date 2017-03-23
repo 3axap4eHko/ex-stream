@@ -30,18 +30,40 @@ composed.end('Some data'); // write to file and stdout
 
 
 
-<h2>Constructor</h2>
+<h3>Constructor</h3>
 <a id="composer-constructor-constructor"></a>
+
+
+**Parameters:**
+
+- `options.streams`: `Array.<Stream>` - Array of Streams
+- `options`: `Object` - Stream options
+
+
+
+> Creates Composer stream instance
+
+
+``` javascript
+new Composer({
+   streams: [
+     process.stdout,
+     fs.createWriteStream('filename.txt'),
+   ]
+ })
+```
 
 ---
 
-<h2>Methods</h2>
+<h3>Methods</h3>
+
 <a id="composer-method-pipe"></a>
 
 ``` javascript
 pipe(stream: Stream)
 ```
 
+> Attaches writable stream
 
 **Parameters:**
 
@@ -51,12 +73,14 @@ pipe(stream: Stream)
 
 
 ---
+
 <a id="composer-method-unpipe"></a>
 
 ``` javascript
 unpipe(stream: Stream)
 ```
 
+> Detaches writable stream
 
 **Parameters:**
 

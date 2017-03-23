@@ -1,6 +1,7 @@
 # Jsonify
 
 - [`class Json`](#class-json)
+  - [`constructor()`](#json-constructor-constructor)
 - [`function json`](#function-json)
 
 <a id="class-json"></a><h2>class Json</h2>
@@ -22,6 +23,24 @@ createServer((req, res) => {
 }).listen(3000, 'localhost');
 ```
 
+
+
+<h3>Constructor</h3>
+<a id="json-constructor-constructor"></a>
+
+
+**Parameters:**
+
+- `options`: `Object` - Stream options
+
+
+
+> Creates Json stream instance
+
+
+``` javascript
+new Json()
+```
 
 
 ---

@@ -19,7 +19,9 @@ const _data = Symbol('Data');
 export default class Request extends Accumulator {
   /**
    *
-   * @param {IncomingMessage} request
+   * @param {IncomingMessage} request - request object
+   * @example <caption>Creates Request stream instance</caption>
+   *  new Request(request);
    */
   constructor(request) {
     super({ objectMode: true });
